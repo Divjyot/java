@@ -66,39 +66,57 @@ public class ArraysAndStrings {
 
     /**
      *
-     * @param inputString
+     * @param str
      */
-    public static String[] removeDuplicate(String [] inputString){
+    public static String[] removeDuplicate(String [] str){
 
-        if (inputString.equals("") || inputString == null || inputString.length <2){
-            return inputString;
+        if (str.equals("") || str == null || str.length <2){
+            return str;
         }
 
-        int tail = 1;
+        int tail = 0;
 
-        // Comparing with every element f
-        for (int i = 1; i < inputString.length; i++) {
+        for (int i = 0; i < str.length; i++) {
+            boolean found = false;
 
-            int j;
-            for (j = 0; j < tail; j++) {
-                if (inputString[i].equals(inputString[j])) break;
+            // check if character is already present in
+            // the part of the array before the current char
+            for (int j = 0; j < i; j++) {
+                if (str[j] == str[i]) {
+                    found = true;
+                    break;
+                }
             }
-            if(j == tail){
-                inputString[tail] = inputString[i];
-                tail++;
+
+            // if char is already present
+            // skip this one and do not copy it
+            if (found) {
+                continue;
             }
+
+            // copy the current char to the index
+            // after the last known unique char in the array
+            str[tail] = str[i];
+            tail++;
         }
-        inputString[tail] = "-";
-        return inputString;
+
+        str[tail] = "0";
+        return str;
     }
 
     public static void main(String[] args) {
        // System.out.println(uniqueChar("abcda"));
        // System.out.println(reverseString("abxcbd\0"));
-        String [] inputString = {"a","b","c","d","a","d"};
+        String [] inputString = {"a","b","c","a","d"};
         String [] re = removeDuplicate(inputString);
         for (int i = 0; i < re.length; i++) {
             System.out.println(re[i]);
         }
+
+        char i = 'a';
+        int x = i;
+        System.out.println(x);
+
+
     }
 }
