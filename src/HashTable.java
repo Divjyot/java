@@ -98,7 +98,7 @@ public class HashTable<K,V> extends AbstractMap{
         int p = 1001;
         int a = randomNumber(0, 1001);
         int b = randomNumber(0, 1001);
-        int bucketIndex2 = ((a*(hashCode)+b)% p) % N;
+        int bucketIndex2 = ((a*(hashCode)+b)% p) % N;   (given: a mod N != 0 otherwise every integer will map to b)
         return bucketIndex2;
         */
     }
